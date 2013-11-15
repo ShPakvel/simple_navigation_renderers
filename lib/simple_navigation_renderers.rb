@@ -1,6 +1,7 @@
 require "simple-navigation"
 require "simple_navigation_renderers/exceptions"
 require "simple_navigation_renderers/bootstrap"
+require "simple_navigation_renderers/engine"
 require "simple_navigation_renderers/version"
 
 module SimpleNavigationRenderers
