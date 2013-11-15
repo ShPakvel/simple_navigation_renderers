@@ -1,0 +1,16 @@
+
+// add style for navigation splitted dropdowns
+.navbar .nav > li.dropdown-split-left > a {
+  border-right: none;
+}
+.navbar .nav > li.dropdown-split-right > a {
+  border-left: none;
+}
+
+// correct some style
+.navbar .nav > li > .dropdown-menu.pull-right {
+  float: none ! important;
+}
+.navbar .nav > li > a > .caret {
+  margin: 0;
+}

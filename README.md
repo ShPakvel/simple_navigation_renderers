@@ -78,12 +78,12 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, news_index_path, highlights_on: :subpath
     primary.item :concerts, "Concerts", concerts_path, highlights_on: :subpath
-    primary.item :video, fa_icon("fw film", text: "Video"), videos_path, highlights_on: :subpath
-    primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, info_index_path, split: true, highlights_on: :subpath do |info_nav|
+    primary.item :video, "Video", videos_path, highlights_on: :subpath
+    primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, info_index_path, divider: true, split: true, highlights_on: :subpath do |info_nav|
       info_nav.item :main_info_page, "Main info page", info_path(:main_info_page)
       info_nav.item :about_info_page, "About", info_path(:about_info_page)
       info_nav.item :misc_info_pages, "Misc.", divider: true do |misc_page|
-        misc_page.item :header_misc_pages, "Misc.", header: true
+        misc_page.item :header_misc_pages, "Misc. Pages", header: true
         Info.all.each do |info_page|
           misc_page.item :"#{info_page.permalink}", info_page.title, info_path(info_page)
         end
@@ -97,31 +97,78 @@ end
 Specific options used in the example:
 
 * `:split` - Use it to split first level item link with caret. If you add `split: true` option to item, then caret itself will toggle first level submenu and link will have standard behaviour, instead of toggle submenu. You can use `:split` only with first level items, for the rest it will not do anything.
-* `:divider` - Use it to add Bootstrap divider before item.
+* `:divider` - Use it to add Bootstrap divider before item. if you add `divider: true` option to first level item, then it will first create addition li-tag with `divider-vertical` Bootstrap 2 class and after that create li-tag for item itself. (You can add `divider-vertical` class to Bootstrap 3 - see below) For the second level item and deeper it will create li-tag with class `divider` (the same in Bootstrap 2 and 3)
 * `:header` - Use it to add Bootstrap menu header. If you add `header: true` option to item, then all parameters, except `:name` and `:divider` option, will be ignored. You can use `:header` only with submenus, for the first level items it will not do anything.
-* `:name hash` - Use it instead of `:name` if you want. Hash can have there keys: `:text`, `:icon` and `:title`. You can use it together or separatly. For example:
+* `:name hash` - Use it in place of `:name` if you want. Hash can have three keys: `:text`, `:icon` and `:title`, which is only recognized. You can use it together or separatly, but at least one of `:text` and `:icon` parameters should be provided. For example:
   * `{text: "News", icon: "fa fa-fw fa-bullhorn"}` will create Font Awesome icon and add text after it (name of the item)
   * `{icon: "glyphicon glyphicon-book", title: "Info"}` will create Bootstrap icon with title without any text after it
 
 #### Caveats
 
-Bootstrap 3 has only one level submenu. If you want to use nested submenus as in example above, import `bootstrap2_dropdown_submenu.css.scss` file into your Sass file (e.g. `application.css.scss`) as following:
+1. Bootstrap 3 has only one level submenu. If you want to use nested submenus as in example above, import `bootstrap2_dropdown_submenu.css.scss` file into your Sass file (e.g. `application.css.scss`) as following:
 
 ```scss
 @import "bootstrap2_dropdown_submenu";
 ```
 
-You may also want to include `simple_navigation_bootstrap` file which changes some first level submenu style:
+2. Bootstrap 3 has not `divider-vertical` class. If you want to use it as in example above, import `bootstrap2_navbar_divider_vertical.css.scss` file:
+
+```scss
+@import "bootstrap2_navbar_divider_vertical";
+```
+
+3. You may also want to include following file which changes some first level submenu style:
+
+```scss
+@import "simple_navigation_bootstrap_overrides";
+```
+
+or you can add them all together:
 
 ```scss
 @import "simple_navigation_bootstrap";
 ```
 
-Thus, above example will produce following code:
+#### Result
+
+Thus, above example will produce something like following code:
 
 ```html
-TODO: html output...
+<ul class="nav navbar-nav">
+  <li class="active simple-navigation-active-leaf" id="news">
+    <a href="/news_index_path"><span class="fa fa-fw fa-bullhorn"></span> News</a>
+  </li>
+  <li id="concerts"><a href="/concerts_path">Concerts</a></li>
+  <li id="video"><a href="/videos_path">Video</a></li>
+  <li class="divider-vertical"></li>
+  <li class="dropdown-split-left" id="info">
+    <a href="/info_index_path"><span class="fa fa-fw fa-book" title="Info"></span></a>
+  </li>
+  <li class="dropdown dropdown-split-right">
+    <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+    <ul class="pull-right dropdown-menu">
+      <li id="main_info_page"><a href="/info/main_info_page">Main info page</a></li>
+      <li id="about_info_page"><a href="/info/about_info_page">About</a></li>
+      <li class="divider"></li>
+      <li class="dropdown-submenu" id="misc_info_pages">
+        <a href="#">Misc.</a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Misc. Pages</li>
+          <li id="page1"><a href="/info/page1">Page1</a></li>
+          <li id="page2"><a href="/info/page2">Page2</a></li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li id="contact_info_page"><a href="/info/contact_info_page">Contact</a></li>
+    </ul>
+  </li>
+</ul>
 ```
+
+
+## Test
+
+TODO
 
 
 ## Contributing
