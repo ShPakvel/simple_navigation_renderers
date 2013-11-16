@@ -31,8 +31,9 @@ $ gem install simple_navigation_renderers
 
 ### Set up renderer
 
-There are two ways to say that you want to use any of renderers.  
-You can specify it in you view as a parameter to `render_navigation`:
+There are two ways to say that you want to use any of renderers.
+
+1. You can specify it in you view as a parameter to `render_navigation`:
 
 ```erb
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -48,18 +49,18 @@ You can specify it in you view as a parameter to `render_navigation`:
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse">
 
-      <%= render_navigation(expand_all: true, renderer: :bootstrap3) %>
+      <%= render_navigation( expand_all: true, renderer: :bootstrap3 ) %>
 
     </div>
   </div>
 </nav>
 ```
 
-or set it in the very navigation configuration file (e.g. `config/navigation.rb`):
+2. Or you can set it in the very navigation configuration file (e.g. `config/navigation.rb`):
 
 ```ruby
 SimpleNavigation::Configuration.run do |navigation|
-  navigation.renderer = :bootstrap2
+  navigation.renderer = SimpleNavigationRenderers::Bootstrap2
   # navigation itself goes here...
 end
 ```
@@ -74,7 +75,7 @@ Lets look at the example:
 
 ```ruby
 SimpleNavigation::Configuration.run do |navigation|
-  navigation.renderer = :bootstrap3
+  navigation.renderer = SimpleNavigationRenderers::Bootstrap3
   navigation.items do |primary|
     primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, news_index_path, highlights_on: :subpath
     primary.item :concerts, "Concerts", concerts_path, highlights_on: :subpath

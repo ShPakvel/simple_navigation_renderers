@@ -5,8 +5,8 @@ describe SimpleNavigationRenderers::Bootstrap do
 
   describe '.render' do
 
-    # bv is bootstrap version
-    # stub_name neads to check raising error when invalid 'Item name hash' provided
+    # 'bv' is bootstrap version
+    # 'stub_name' neads to check raising error when invalid 'Item name hash' provided
     def render_result( bv=3, stub_name=false )
       SimpleNavigation::Configuration.instance.renderer = (bv == 3) ? SimpleNavigationRenderers::Bootstrap3 : SimpleNavigationRenderers::Bootstrap2
 
