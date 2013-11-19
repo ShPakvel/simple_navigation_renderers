@@ -1,4 +1,4 @@
-# SimpleNavigationRenderers
+# SimpleNavigationRenderers [![Build Status](https://travis-ci.org/ShPakvel/simple_navigation_renderers.png?branch=master)](https://travis-ci.org/ShPakvel/simple_navigation_renderers)
 
 This gem adds several [Simple Navigation](https://github.com/andi/simple-navigation) renderers.  
 For now, it is include renderers for:
