@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SimpleNavigationRenderers::VERSION
   spec.authors       = ["Pavel Shpak"]
   spec.email         = ["shpakvel@gmail.com"]
-  spec.description   = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3}
-  spec.summary       = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3}
+  spec.description   = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you can create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. }
+  spec.summary       = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you can create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. }
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "simple-navigation", "~> 3.11"
+
   spec.add_development_dependency "actionpack"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "bundler", "~> 1.3"
