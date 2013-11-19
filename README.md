@@ -11,21 +11,21 @@ With these renderers you can create any bootstrap navigation elements, such as: 
 
 Add this line to your application's Gemfile:
 
-    ```ruby
-    gem 'simple_navigation_renderers'
-    ```
+```ruby
+gem 'simple_navigation_renderers'
+```
 
 and then execute:
 
-    ```console
-    $ bundle
-    ```
+```console
+$ bundle
+```
 
 Or install it yourself as:
 
-    ```console
-    $ gem install simple_navigation_renderers
-    ```
+```console
+$ gem install simple_navigation_renderers
+```
 
 
 ## Usage
@@ -74,27 +74,27 @@ If not, you can always look at the [configuration instructions](https://github.c
 In addition to standard options you can use ones specific for Bootstrap renderers.  
 Lets look at the example:
 
-    ```ruby
-    SimpleNavigation::Configuration.run do |navigation|
-      navigation.renderer = SimpleNavigationRenderers::Bootstrap3
-      navigation.items do |primary|
-        primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, news_index_path, highlights_on: :subpath
-        primary.item :concerts, "Concerts", concerts_path, highlights_on: :subpath
-        primary.item :video, "Video", videos_path, highlights_on: :subpath
-        primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, info_index_path, divider: true, split: true, highlights_on: :subpath do |info_nav|
-          info_nav.item :main_info_page, "Main info page", info_path(:main_info_page)
-          info_nav.item :about_info_page, "About", info_path(:about_info_page)
-          info_nav.item :misc_info_pages, "Misc.", divider: true do |misc_page|
-            misc_page.item :header_misc_pages, "Misc. Pages", header: true
-            Info.all.each do |info_page|
-              misc_page.item :"#{info_page.permalink}", info_page.title, info_path(info_page)
-            end
-          end
-          info_nav.item :contact_info_page, "Contact", info_path(:contact_info_page), divider: true
+```ruby
+SimpleNavigation::Configuration.run do |navigation|
+  navigation.renderer = SimpleNavigationRenderers::Bootstrap3
+  navigation.items do |primary|
+    primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, news_index_path, highlights_on: :subpath
+    primary.item :concerts, "Concerts", concerts_path, highlights_on: :subpath
+    primary.item :video, "Video", videos_path, highlights_on: :subpath
+    primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, info_index_path, divider: true, split: true, highlights_on: :subpath do |info_nav|
+      info_nav.item :main_info_page, "Main info page", info_path(:main_info_page)
+      info_nav.item :about_info_page, "About", info_path(:about_info_page)
+      info_nav.item :misc_info_pages, "Misc.", divider: true do |misc_page|
+        misc_page.item :header_misc_pages, "Misc. Pages", header: true
+        Info.all.each do |info_page|
+          misc_page.item :"#{info_page.permalink}", info_page.title, info_path(info_page)
         end
       end
+      info_nav.item :contact_info_page, "Contact", info_path(:contact_info_page), divider: true
     end
-    ```
+  end
+end
+```
 
 Specific options used in the example:
 
@@ -127,55 +127,55 @@ Specific options used in the example:
 
 or you can add them all together:
 
-    ```scss
-    @import "simple_navigation_bootstrap";
-    ```
+```scss
+@import "simple_navigation_bootstrap";
+```
 
 #### Result
 
 Thus, above example will produce something like following code:
 
-    ```html
-    <ul class="nav navbar-nav">
-      <li class="active simple-navigation-active-leaf" id="news">
-        <a href="/news_index_path"><span class="fa fa-fw fa-bullhorn"></span> News</a>
-      </li>
-      <li id="concerts"><a href="/concerts_path">Concerts</a></li>
-      <li id="video"><a href="/videos_path">Video</a></li>
-      <li class="divider-vertical"></li>
-      <li class="dropdown-split-left" id="info">
-        <a href="/info_index_path"><span class="fa fa-fw fa-book" title="Info"></span></a>
-      </li>
-      <li class="dropdown dropdown-split-right">
-        <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#"><b class="caret"></b></a>
-        <ul class="pull-right dropdown-menu">
-          <li id="main_info_page"><a href="/info/main_info_page">Main info page</a></li>
-          <li id="about_info_page"><a href="/info/about_info_page">About</a></li>
-          <li class="divider"></li>
-          <li class="dropdown-submenu" id="misc_info_pages">
-            <a href="#">Misc.</a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-header">Misc. Pages</li>
-              <li id="page1"><a href="/info/page1">Page1</a></li>
-              <li id="page2"><a href="/info/page2">Page2</a></li>
-            </ul>
-          </li>
-          <li class="divider"></li>
-          <li id="contact_info_page"><a href="/info/contact_info_page">Contact</a></li>
+```html
+<ul class="nav navbar-nav">
+  <li class="active simple-navigation-active-leaf" id="news">
+    <a href="/news_index_path"><span class="fa fa-fw fa-bullhorn"></span> News</a>
+  </li>
+  <li id="concerts"><a href="/concerts_path">Concerts</a></li>
+  <li id="video"><a href="/videos_path">Video</a></li>
+  <li class="divider-vertical"></li>
+  <li class="dropdown-split-left" id="info">
+    <a href="/info_index_path"><span class="fa fa-fw fa-book" title="Info"></span></a>
+  </li>
+  <li class="dropdown dropdown-split-right">
+    <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+    <ul class="pull-right dropdown-menu">
+      <li id="main_info_page"><a href="/info/main_info_page">Main info page</a></li>
+      <li id="about_info_page"><a href="/info/about_info_page">About</a></li>
+      <li class="divider"></li>
+      <li class="dropdown-submenu" id="misc_info_pages">
+        <a href="#">Misc.</a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Misc. Pages</li>
+          <li id="page1"><a href="/info/page1">Page1</a></li>
+          <li id="page2"><a href="/info/page2">Page2</a></li>
         </ul>
       </li>
+      <li class="divider"></li>
+      <li id="contact_info_page"><a href="/info/contact_info_page">Contact</a></li>
     </ul>
-    ```
+  </li>
+</ul>
+```
 
 
 ## Test
 
 Just run following commands:
 
-    ```console
-    $ bundle
-    $ rake
-    ```
+```console
+$ bundle
+$ rake
+```
 
 
 ## Contributing
