@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["shpakvel@gmail.com"]
   spec.description   = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you can create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. }
   spec.summary       = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you can create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. }
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/ShPakvel/simple_navigation_renderers"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
