@@ -1,3 +1,8 @@
+## v0.0.3
+
+* change README
+
+
 ## v0.0.2
 
 * add Travis CI

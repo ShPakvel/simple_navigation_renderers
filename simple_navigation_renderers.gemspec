@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = SimpleNavigationRenderers::VERSION
   spec.authors       = ["Pavel Shpak"]
   spec.email         = ["shpakvel@gmail.com"]
-  spec.description   = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you can create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. }
-  spec.summary       = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you can create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. }
+  spec.description   = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you will be able create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. Also you have split option for main menu containing submenu. }
+  spec.summary       = %q{simple_navigation_renderers gem adds renderers for Bootstrap 2 and 3. With these renderers you will be able create any bootstrap navigation elements, such as: submenus, dividers, headers. As well as add icons to menu elements, such as: gliphicons, font-awesome icons, even custom icons. Also you have split option for main menu containing submenu. }
   spec.homepage      = "http://github.com/ShPakvel/simple_navigation_renderers"
   spec.license       = "MIT"
 
