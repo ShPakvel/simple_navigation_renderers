@@ -1,3 +1,8 @@
+## v1.0.1
+
+* fix problem with `name_generator` method (appeared after `simple-navigation` changes)
+
+
 ## v1.0.0
 
 * separate 'divider' Bootstrap element
