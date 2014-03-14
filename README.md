@@ -5,7 +5,7 @@ For now, it is include renderers for:
 * [Bootstrap 2 navigation](http://getbootstrap.com/components/#navbar)
 * [Bootstrap 3 navigation](http://getbootstrap.com/2.3.2/components.html#navbar)
 
-With these renderers you will be able create **any bootstrap navigation elements**, such as: **submenus**, **dividers**, **headers**. As well as add **icons** to menu elements, such as: gliphicons, font-awesome icons, even custom icons. Also you have **split** option for main menu containing submenu.
+With these renderers you will be able create **any bootstrap navigation elements**, such as: **submenu**, **navbar-text**, **divider**, **header**. As well as add **icons** to menu elements, such as: gliphicons, font-awesome icons, even custom icons. Also you have **split** option for main menu containing submenu.
 
 ## Installation
 
@@ -63,20 +63,23 @@ Lets look at the example:
 SimpleNavigation::Configuration.run do |navigation|
   navigation.renderer = SimpleNavigationRenderers::Bootstrap3
   navigation.items do |primary|
-    primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, news_index_path, highlights_on: :subpath
-    primary.item :concerts, "Concerts", concerts_path, highlights_on: :subpath
-    primary.item :video, "Video", videos_path, highlights_on: :subpath
-    primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, info_index_path, divider: true, split: true, highlights_on: :subpath do |info_nav|
+    primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, news_index_path
+    primary.item :concerts, "Concerts", concerts_path
+    primary.item :video, "Video", videos_path
+    primary.item :divider_before_info, '#', divider: true
+    primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, info_index_path, split: true do |info_nav|
       info_nav.item :main_info_page, "Main info page", info_path(:main_info_page)
       info_nav.item :about_info_page, "About", info_path(:about_info_page)
-      info_nav.item :misc_info_pages, "Misc.", divider: true do |misc_page|
+      info_nav.item :misc_info_pages, "Misc." do |misc_page|
         misc_page.item :header_misc_pages, "Misc. Pages", header: true
         Info.all.each do |info_page|
           misc_page.item :"#{info_page.permalink}", info_page.title, info_path(info_page)
         end
       end
-      info_nav.item :contact_info_page, "Contact", info_path(:contact_info_page), divider: true
+      info_nav.item :divider_before_contact_info_page, '#', divider: true
+      info_nav.item :contact_info_page, "Contact", info_path(:contact_info_page)
     end
+    primary.item :singed_in, "Signed in as Pavel Shpak", navbar_text: true
   end
 end
 ```
@@ -86,8 +89,9 @@ end
 Specific options used in the example:
 
 * `:split` - Use it to split first level item link with caret. If you add `split: true` option to item, then caret itself will toggle first level submenu and link will have standard behaviour, instead of toggle submenu. You can use `:split` only with first level items, for the rest it will not do anything.
-* `:divider` - Use it to add Bootstrap divider before item. if you add `divider: true` option to first level item, then it will first create addition li-tag with `divider-vertical` Bootstrap 2 class and after that create li-tag for item itself. (You can add `divider-vertical` class to Bootstrap 3 - see below) For the second level item and deeper it will create li-tag with class `divider` (the same in Bootstrap 2 and 3)
-* `:header` - Use it to add Bootstrap menu header. If you add `header: true` option to item, then all parameters, except `:name` and `:divider` option, will be ignored. You can use `:header` only with submenus, for the first level items it will not do anything.
+* `:navbar_text` - Use it as `navbar_text: true` to add Bootstrap 'navbar-text'.
+* `:divider` - Use it to add Bootstrap menu divider. if you add `divider: true` option to first level item, then it will create li-tag with `divider-vertical` Bootstrap 2 class. (You can add `divider-vertical` class to Bootstrap 3 - see below). For the second level item and deeper it will create li-tag with class `divider` (which exists in both, Bootstrap 2 and 3).
+* `:header` - Use it as `header: true` to add Bootstrap menu header. You can use `:header` only with submenus, for the first level items it will not do anything.
 * `:name hash` - Use it in place of `:name` if you want. Hash can have three keys: `:text`, `:icon` and `:title`, which is only recognized. You can use it together or separatly, but at least one of `:text` and `:icon` parameters should be provided. For example:
   * `{text: "News", icon: "fa fa-fw fa-bullhorn"}` will create Font Awesome icon and add text after it (name of the item)
   * `{icon: "glyphicon glyphicon-book", title: "Info"}` will create Bootstrap icon with title without any text after it
@@ -124,13 +128,13 @@ Thus, above example will produce something like following code:
 
 ```html
 <ul class="nav navbar-nav">
-  <li class="active simple-navigation-active-leaf" id="news">
+  <li id="news" class="active simple-navigation-active-leaf">
     <a href="/news_index_path"><span class="fa fa-fw fa-bullhorn"></span> News</a>
   </li>
   <li id="concerts"><a href="/concerts_path">Concerts</a></li>
   <li id="video"><a href="/videos_path">Video</a></li>
-  <li class="divider-vertical"></li>
-  <li class="dropdown-split-left" id="info">
+  <li id="divider_before_info" class="divider-vertical"></li>
+  <li id="info" class="dropdown-split-left">
     <a href="/info_index_path"><span class="fa fa-fw fa-book" title="Info"></span></a>
   </li>
   <li class="dropdown dropdown-split-right">
@@ -138,19 +142,19 @@ Thus, above example will produce something like following code:
     <ul class="pull-right dropdown-menu">
       <li id="main_info_page"><a href="/info/main_info_page">Main info page</a></li>
       <li id="about_info_page"><a href="/info/about_info_page">About</a></li>
-      <li class="divider"></li>
-      <li class="dropdown-submenu" id="misc_info_pages">
+      <li id="misc_info_pages" class="dropdown-submenu">
         <a href="#">Misc.</a>
         <ul class="dropdown-menu">
-          <li class="dropdown-header">Misc. Pages</li>
+          <li id="header_misc_pages" class="dropdown-header">Misc. Pages</li>
           <li id="page1"><a href="/info/page1">Page1</a></li>
           <li id="page2"><a href="/info/page2">Page2</a></li>
         </ul>
       </li>
-      <li class="divider"></li>
+      <li id="divider_before_contact_info_page" class="divider"></li>
       <li id="contact_info_page"><a href="/info/contact_info_page">Contact</a></li>
     </ul>
   </li>
+  <li id="singed_in"><p class="navbar-text">Signed in as Pavel Shpak</p></li>
 </ul>
 ```
 
