@@ -1,3 +1,10 @@
+## v1.0.2
+
+* fix README
+* add Code Climate, Coveralls and Gemnasium
+* refactor rendering
+
+
 ## v1.0.1
 
 * fix problem with `name_generator` method (appeared after `simple-navigation` changes)
