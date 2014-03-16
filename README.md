@@ -1,9 +1,15 @@
-# SimpleNavigationRenderers [![Build Status](https://travis-ci.org/ShPakvel/simple_navigation_renderers.png?branch=master)](https://travis-ci.org/ShPakvel/simple_navigation_renderers)
+# SimpleNavigationRenderers
+
+[![Gem Version](https://badge.fury.io/rb/simple_navigation_renderers.png)](http://badge.fury.io/rb/simple_navigation_renderers)
+[![Build Status](https://travis-ci.org/ShPakvel/simple_navigation_renderers.png?branch=master)](https://travis-ci.org/ShPakvel/simple_navigation_renderers)
+[![Code Climate](https://codeclimate.com/github/ShPakvel/simple_navigation_renderers.png)](https://codeclimate.com/github/ShPakvel/simple_navigation_renderers)
+[![Coverage Status](https://coveralls.io/repos/ShPakvel/simple_navigation_renderers/badge.png)](https://coveralls.io/r/ShPakvel/simple_navigation_renderers)
+[![Dependency Status](https://gemnasium.com/ShPakvel/simple_navigation_renderers.png)](https://gemnasium.com/ShPakvel/simple_navigation_renderers)
 
 This gem adds several [Simple Navigation](https://github.com/andi/simple-navigation) renderers.  
 For now, it is include renderers for:
-* [Bootstrap 2 navigation](http://getbootstrap.com/components/#navbar)
-* [Bootstrap 3 navigation](http://getbootstrap.com/2.3.2/components.html#navbar)
+* [Bootstrap 2 navigation](http://getbootstrap.com/2.3.2/components.html#navbar)
+* [Bootstrap 3 navigation](http://getbootstrap.com/components/#navbar)
 
 With these renderers you will be able create **any bootstrap navigation elements**, such as: **submenu**, **navbar-text**, **divider**, **header**. As well as add **icons** to menu elements, such as: gliphicons, font-awesome icons, even custom icons. Also you have **split** option for main menu containing submenu.
 
@@ -176,3 +182,8 @@ $ rake
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## MIT License
+
+See the file LICENSE.txt for copying permission.
