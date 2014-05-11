@@ -1,5 +1,5 @@
 require 'coveralls'
-require 'action_controller'
+require "action_view"
 require "action_view/vendor/html-scanner"
 
 Coveralls.wear!
