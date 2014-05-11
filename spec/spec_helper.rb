@@ -1,8 +1,10 @@
 require 'coveralls'
+require 'action_controller'
+require 'html/document'
+
 Coveralls.wear!
 
 ENV["RAILS_ENV"] = "test"
-require 'action_controller'
 module Rails
   module VERSION
     MAJOR = 2

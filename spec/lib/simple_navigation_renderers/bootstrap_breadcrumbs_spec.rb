@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'html/document' unless defined? HTML::Document
 
 describe SimpleNavigationRenderers::BootstrapBreadcrumbs do
 
