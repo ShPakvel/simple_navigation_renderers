@@ -8,4 +8,12 @@ describe SimpleNavigationRenderers do
   it "registers 'bootstrap3' renderer" do
     SimpleNavigation.registered_renderers[:bootstrap3].should == SimpleNavigationRenderers::Bootstrap3
   end
+
+  it "registers 'bootstrap_breadcrumbs2' renderer" do
+    SimpleNavigation.registered_renderers[:bootstrap_breadcrumbs2].should == SimpleNavigationRenderers::BootstrapBreadcrumbs2
+  end
+
+  it "registers 'bootstrap_breadcrumbs3' renderer" do
+    SimpleNavigation.registered_renderers[:bootstrap_breadcrumbs3].should == SimpleNavigationRenderers::BootstrapBreadcrumbs3
+  end
 end

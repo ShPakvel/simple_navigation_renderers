@@ -5,27 +5,6 @@ describe SimpleNavigationRenderers::Bootstrap do
 
   describe '.render' do
 
-    # tested navigation content
-    def fill_in( primary )
-      primary.item :news, {icon: "fa fa-fw fa-bullhorn", text: "News"}, "news_index_path"
-      primary.item :concerts, "Concerts", "concerts_path", class: "to_check_header", header: true
-      primary.item :video, "Video", "videos_path", class: "to_check_split", split: true
-      primary.item :divider_before_info_index_path, '#', divider: true
-      primary.item :info, {icon: "fa fa-fw fa-book", title: "Info"}, "info_index_path", split: true do |info_nav|
-        info_nav.item :main_info_page, "Main info page", "main_info_page"
-        info_nav.item :about_info_page, "About", "about_info_page"
-        info_nav.item :divider_before_misc_info_pages, '#', divider: true
-        info_nav.item :misc_info_pages, "Misc.", "misc_info_pages", split: true do |misc_nav|
-          misc_nav.item :header_misc_pages, "Misc. Pages", class: "to_check_header2", header: true
-          misc_nav.item :page1, "Page1", "page1"
-          misc_nav.item :page2, "Page2", "page2"
-        end
-        info_nav.item :divider_before_contact_info_page, '#', divider: true
-        info_nav.item :contact_info_page, "Contact", "contact_info_page"
-      end
-      primary.item :singed_in, "Signed in as Pavel Shpak", class: "to_check_navbar_text", navbar_text: true
-    end
-
     # 'bv' is bootstrap version
     # 'stub_name' neads to check raising error when invalid 'Item name hash' provided
     def render_result( bv=3, stub_name=false )
@@ -33,10 +12,10 @@ describe SimpleNavigationRenderers::Bootstrap do
 
       SimpleNavigation.stub( adapter: (SimpleNavigation::Adapters::Rails.new(double(:context, view_context: ActionView::Base.new))) )
 
-      SimpleNavigation::Item.any_instance.stub( selected?: false, selected_by_condition?: false )
+      SimpleNavigation::Item.any_instance.stub( selected_by_condition?: false )
       primary_navigation = SimpleNavigation::ItemContainer.new(1)
       fill_in( primary_navigation ) # helper method
-      primary_navigation.items.find { |item| item.key == :news }.stub( selected?: true, selected_by_condition?: true )
+      primary_navigation.items.find { |item| item.key == :news }.stub( selected_by_condition?: true )
 
       primary_navigation.items[0].instance_variable_set(:@name, {}) if stub_name
 
