@@ -4,14 +4,19 @@ require 'html/document'
 
 Coveralls.wear!
 
-ENV["RAILS_ENV"] = "test"
-module Rails
-  module VERSION
-    MAJOR = 2
+unless defined?(Rails)
+  module ::Rails
+    module VERSION
+      MAJOR = 4
+    end
+    def self.root; './'; end
+    def self.env; 'test'; end
+
+    class Railtie
+      def self.initializer(*args); end
+    end
   end
-end unless defined? Rails
-RAILS_ROOT = './' unless defined?(RAILS_ROOT)
-RAILS_ENV = 'test' unless defined?(RAILS_ENV)
+end
 
 require "simple_navigation_renderers"
 
